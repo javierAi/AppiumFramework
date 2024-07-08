@@ -1,5 +1,4 @@
 
-AppiumCourse
 {
   "appium:app": "C://Users//Javi//git//javiandradeprojects//Appium//src//test//java//resources//ApiDemos-debug.apk",
   "appium:deviceName": "Pixel_Javi",
