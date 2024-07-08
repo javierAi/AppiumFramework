@@ -48,6 +48,39 @@ public class BaseTest {
 			driver = new AndroidDriver(new URI("http://127.0.0.1:4723/").toURL(), options);
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
+	public void longPressAction(WebElement element)
+	{
+		((JavascriptExecutor)driver).executeScript("mobile: longClickGesture",
+				ImmutableMap.of("elementId",((RemoteWebElement)element).getId(),
+						"duration",2000));
+	}
+	
+	public void scrollToEndAction()
+	{
+		boolean canScrollMore;
+		do
+		{
+		 canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
+			    "left", 100, "top", 100, "width", 200, "height", 200,
+			    "direction", "down",
+			    "percent", 3.0
+			    
+			));
+		}while(canScrollMore);
+	}
+	
+	
+	public void swipeAction(WebElement element,String direction)
+	{
+		((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
+				"elementId", ((RemoteWebElement)element).getId(),
+			 
+			    "direction", direction,
+			    "percent", 0.75
+			));
+		
+		
+	}
 	@AfterClass
 	public void tearDown()
 	{
