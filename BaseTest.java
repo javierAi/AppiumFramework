@@ -39,15 +39,22 @@ public class BaseTest {
 			UiAutomator2Options options = new UiAutomator2Options();
 			//options.setDeviceName("RahulPhone"); //emulator
 			options.setDeviceName("Pixel_Javi"); //from Android Studio
-			options.setApp("C://Users//Javi//git//javiandradeprojects//Appium//src//test//java//resources//ApiDemos-debug.apk");
-
-			options.setChromedriverExecutable("//Users//rahulshetty//documents//chromedriver 11");
+			//options.setApp("C://Users//Javi//git//javiandradeprojects//Appium//src//test//java//resources//ApiDemos-debug.apk");
+			options.setApp("C://Users//Javi//git//javiandradeprojects//Appium//src//test//java//resources//General-Store.apk");
+			options.setChromedriverExecutable("C://Users//Javi//Desktop//Utils//chromedriver.exe"); //to switch to web if HYBRID
 			
 			// URl class deprecated from java 20
 			//this should load apk selected on emulator
 			driver = new AndroidDriver(new URI("http://127.0.0.1:4723/").toURL(), options);
+			//example of explicit
+			//WebDriverWait wait = new WebDriverWait(driver, 10);
+			//WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("elementId")));
+			//implicit, wait for all elements in DOM to be available
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
+	
+	// MOBILE GESTURE
+	//https://github.com/rakjha/appium/blob/master/docs/en/writing-running-appium/android/android-mobile-gestures.md
 	public void longPressAction(WebElement element)
 	{
 		((JavascriptExecutor)driver).executeScript("mobile: longClickGesture",
@@ -81,6 +88,12 @@ public class BaseTest {
 		
 		
 	}
+	public Double getFormattedAmount(String amount)
+	{
+		Double price = Double.parseDouble(amount.substring(1));//remove $ simbol + cast to double
+		return price;
+	}
+		
 	@AfterClass
 	public void tearDown()
 	{

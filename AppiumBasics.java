@@ -17,14 +17,14 @@ public class AppiumBasics extends BaseTest{
 		
 		//Xpath, id, accessibilityId, classname, androidUIAutomator -->only for mobile
 			driver.findElement(AppiumBy.accessibilityId("Preference")).click();
-			 //tagName[@attribute='value']  -> //tagName
+			 // xpath -> tagName[@attribute='value']  -> tagName
 			driver.findElement(By.xpath("//android.widget.TextView[@content-desc='3. Preference dependencies']")).click();
 			driver.findElement(By.id("android:id/checkbox")).click();
-			driver.findElement(By.xpath("(//android.widget.RelativeLayout)[2]")).click(); 
+			driver.findElement(By.xpath("(//android.widget.RelativeLayout)[2]")).click(); //second match date from top down
 			String alertTitle = driver.findElement(By.id("android:id/alertTitle")).getText();
 			Assert.assertEquals(alertTitle, "WiFi settings");	
 			driver.findElement(By.id("android:id/edit")).sendKeys("prueba");
-			driver.findElements(AppiumBy.className("android.widget.Button")).get(1).click();
+			driver.findElements(AppiumBy.className("android.widget.Button")).get(1).click(); // get(1) is ok get(0) is cancel
 
 
 	}
